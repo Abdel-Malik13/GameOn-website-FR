@@ -9,6 +9,10 @@ let modalBody = document.querySelector(".modal-body");
 const form = document.querySelector("form");
 const closeModalBtn = document.querySelector(".close");
 
+const messageConfirmation = document.querySelector(".message-confirmation");
+
+console.log(messageConfirmation);
+
 
 const btnMenu = document.querySelector(".icon");
 
@@ -68,10 +72,6 @@ function formSubmit(e) {
   termsCondition(e, numberOfError);
 
   submitConfirmation(e, numberOfError);
-
-  console.log(numberOfError);
-
-  console.log(numberOfError.length);
 
 }
 
@@ -201,18 +201,16 @@ function submitConfirmation(element, errorList) {
     
     element.preventDefault();
 
-    let messageAfterFormSubmit = document.createElement("p");
-    messageAfterFormSubmit.innerText = "Merci pour votre inscription";
+    // Mettre un display none au form
+    // Créer un nouveau paragraphe contenant le message de confirmation d'inscription
+    
+    // Au clique sur la croix, mettre un display none au message de confirmation et un display block au form pour le faire réaparaitre
+    // Rajouter un bouton "fermer" pour fermer la modale
 
-    console.log(modalBody);
-    modalBody.innerHTML = "";
+    form.style.display = "none";
 
-    modalBody.appendChild(messageAfterFormSubmit);
-    modalBody.className += " validation-form";
-    // let messageAfterFormSubmit = document.createElement("h2");
-    // messageAfterFormSubmit.innerText = "Merci pour votre inscription";
+    messageConfirmation.style.display = "block";
 
-    // modalBody = messageAfterFormSubmit;
     console.log("Il n'y a pas d'erreur dans le formulaire");
 
   } else {
@@ -261,5 +259,21 @@ closeModalBtn.addEventListener("click", closeModal);
 function closeModal() {
   modalbg.style.display = "none";
 
-  modalBody.classList.remove("validation-form");
+  console.log(form.style.display);
+
+  if (form.style.display == "none") {
+
+    form.style.display = "block";
+    
+    messageConfirmation.style.display = "none";
+
+  } else if (form.style.display == "") {
+
+    form.style.display = "";
+
+  } else {
+
+    form.style.display = "none";
+
+  }
 }

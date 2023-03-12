@@ -192,9 +192,13 @@ main {
 }
 
 .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  min-height: 700px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -561,8 +565,8 @@ input:invalid {
   margin-top: 5px;
 }
 
-.validation-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.message-confirmation {
+  display: none;
+  font-size: 1.6em;
+  text-align: center;
 }
