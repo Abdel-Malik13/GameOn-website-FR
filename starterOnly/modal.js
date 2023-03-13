@@ -8,11 +8,9 @@ let modalBody = document.querySelector(".modal-body");
 
 const form = document.querySelector("form");
 const closeModalBtn = document.querySelector(".close");
+const closeBtn = document.querySelector(".btn-close");
 
 const messageConfirmation = document.querySelector(".message-confirmation");
-
-console.log(messageConfirmation);
-
 
 const btnMenu = document.querySelector(".icon");
 
@@ -36,21 +34,7 @@ const errorQuantity = document.getElementById("error-quantity");
 const errorCity = document.getElementById("error-city");
 const errorTerms = document.getElementById("error-terms");
 
-// errorFirst.innerText = "hello";
 
-// console.log(termsOfUse.value);
-
-
-// Les champs nom et prénom doivent avoir au minimum 2 caractères et ne doivent pas être vide
-// Créer une fonction qui vérifie la longueur des champs nom et prénom et vérifie que la longeur n'est pas 0 ou null
-// Elle doit vérifier que le champ email est valide
-// Elle doit vérifier que le champ du nombre de concours saisi est bien un nombre
-// Vérifie qu'une ville est saisie
-// Enfin, elle vérifie que les conditions générales est cochée
-
-// Le formulaire doit conserver les données saisies lorsque la validation n'est pas valide
-
-// console.log(termsOfUse.value);
 
 
 function formSubmit(e) {
@@ -82,6 +66,8 @@ function firstNameVerification(element, error) {
     firstName.style.border = "2px solid #279e7a";
     errorFirst.innerText = "";
 
+    sessionStorage.setItem("firstName", firstName.value.trim());
+
   } else {
 
     element.preventDefault();
@@ -97,6 +83,8 @@ function lastNameVerification(element, error) {
 
     lastName.style.border = "2px solid #279e7a";
     errorLast.innerText = "";
+
+    sessionStorage.setItem("lastName", lastName.value.trim());
 
   } else {
 
@@ -114,6 +102,8 @@ function emailVerification(element, error) {
     email.style.border = "2px solid #279e7a";
     errorEmail.innerText = "";
 
+    sessionStorage.setItem("email", email.value);
+
   } else {
 
     element.preventDefault();
@@ -130,6 +120,8 @@ function birthDateChecked(element, error) {
     birthDate.style.border = "2px solid #279e7a";
     errorBirthdate.innerText = "";
 
+    sessionStorage.setItem("birthDate", birthDate.value);
+
   } else {
 
     element.preventDefault();
@@ -145,6 +137,8 @@ function tournamentQuantityChecked(element, error) {
 
     tournamentQuantity.style.border = "2px solid #279e7a";
     errorQuantity.innerText = "";
+
+    sessionStorage.setItem("tournamentQuantity", tournamentQuantity.value);
 
   } else {
 
@@ -163,6 +157,9 @@ function cityTournamentChecked(element, error) {
     if (cityTournament.checked) {
 
       errorCity.innerText = "";
+
+      sessionStorage.setItem("tournamentCity", cityTournament.value);
+
       return cityTournament.value;
 
     } else {
@@ -191,27 +188,20 @@ function termsCondition(element, error) {
 
 
 function submitConfirmation(element, errorList) {
-  // Vérifier que le tableau des erreurs est égale à 0
-  // Si c'est le cas, créer un nouvel element dans la modale "modal-body" avec le message
-  // indiquant que le formulaire a bien été envoyé
-
-  console.log(errorList.length);
 
   if (errorList.length == 0) {
     
     element.preventDefault();
 
-    // Mettre un display none au form
-    // Créer un nouveau paragraphe contenant le message de confirmation d'inscription
-    
-    // Au clique sur la croix, mettre un display none au message de confirmation et un display block au form pour le faire réaparaitre
-    // Rajouter un bouton "fermer" pour fermer la modale
-
     form.style.display = "none";
 
     messageConfirmation.style.display = "block";
 
+    closeBtn.style.display = "block";
+
     console.log("Il n'y a pas d'erreur dans le formulaire");
+
+    sessionStorage.clear();
 
   } else {
 
@@ -221,8 +211,6 @@ function submitConfirmation(element, errorList) {
 
   console.log("Formulaire envoyé");
 
-  // S'il reste des erreurs dans le tableau des erreurs,
-  // Ne pas envoyer le formulaire
 }
 
 
@@ -234,12 +222,19 @@ form.addEventListener("submit", formSubmit);
 // A refaire
 
 function editNav() {
+
   let topNav = document.getElementById("myTopnav");
+
   if (topNav.className === "topnav") {
+
     topNav.className += " responsive";
+
   } else {
+
     topNav.className = "topnav";
+
   }
+
 }
 
 btnMenu.addEventListener("click", editNav);
@@ -250,22 +245,55 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
+
   modalbg.style.display = "block";
+  
+
+  if (sessionStorage.getItem("firstName")) {
+    firstName.value = sessionStorage.getItem("firstName");
+  }
+
+  if (sessionStorage.getItem("lastName")) {
+    lastName.value = sessionStorage.getItem("lastName");
+  }
+
+  if (sessionStorage.getItem("email")) {
+    email.value = sessionStorage.getItem("email");
+  }
+
+  if (sessionStorage.getItem("birthDate")) {
+    birthDate.value = sessionStorage.getItem("birthDate");
+  }
+
+  if (sessionStorage.getItem("tournamentQuantity")) {
+    tournamentQuantity.value = sessionStorage.getItem("tournamentQuantity");
+  }
+
+  if (sessionStorage.getItem("tournamentCity")) {
+
+    const tournamentCityValue = sessionStorage.getItem('tournamentCity');
+    const tournamentCityChecked = document.querySelector(`input[value="${tournamentCityValue}"]`);
+
+    tournamentCityChecked.checked = true;
+
+  }
+
 }
 
 // button for close the modal
 closeModalBtn.addEventListener("click", closeModal);
+closeBtn.addEventListener("click", closeModal);
 
 function closeModal() {
-  modalbg.style.display = "none";
 
-  console.log(form.style.display);
+  modalbg.style.display = "none";
 
   if (form.style.display == "none") {
 
     form.style.display = "block";
     
     messageConfirmation.style.display = "none";
+    closeBtn.style.display = "none";
 
   } else if (form.style.display == "") {
 
@@ -276,4 +304,5 @@ function closeModal() {
     form.style.display = "none";
 
   }
+
 }

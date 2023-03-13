@@ -567,6 +567,17 @@ input:invalid {
 
 .message-confirmation {
   display: none;
+  margin-bottom: 28px;
   font-size: 1.6em;
   text-align: center;
+}
+
+.btn-close {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 28px;
+  padding: 12px 82px;
 }
