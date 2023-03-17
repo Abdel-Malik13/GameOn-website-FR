@@ -1,20 +1,19 @@
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const checkboxInput = document.querySelectorAll('.checkbox-input');
-
-let modalBody = document.querySelector(".modal-body");
-
-
+const modalBg = document.querySelector(".bground");
+const btnSignUp = document.querySelectorAll(".btn-signup");
 const form = document.querySelector("form");
+const formData = document.querySelectorAll(".formData");
+
+// Icon X closing modal and button closing the modal after form submitting
 const closeModalBtn = document.querySelector(".close");
 const closeBtn = document.querySelector(".btn-close");
 
+// Message of confirmation after form submitting
 const messageConfirmation = document.querySelector(".message-confirmation");
 
+// Button for menu on responsive mode
 const btnMenu = document.querySelector(".icon");
 
-
+// Individual inputs form
 const firstName = document.querySelector("#first");
 const lastName = document.querySelector("#last");
 const email = document.querySelector("#email");
@@ -23,11 +22,13 @@ const tournamentQuantity = document.querySelector("#quantity");
 const tournamentCity = document.querySelectorAll("input[type='radio']");
 const termsOfUse = document.querySelector("#checkbox1");
 
+// Regex for form verifications (mail and first name & last name)
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const regexName = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
-const errorFirst = document.getElementById("error-first");
-const errorLast = document.getElementById("error-last");
+// Const to select div for message error
+const errorFirstName = document.getElementById("error-first");
+const errorLastName = document.getElementById("error-last");
 const errorEmail = document.getElementById("error-email");
 const errorBirthdate = document.getElementById("error-birthdate");
 const errorQuantity = document.getElementById("error-quantity");
@@ -76,8 +77,9 @@ function firstNameVerification(element, error) {
   if (firstName.value.trim().length >= 2 && firstName.value.trim() != "") {
 
     // Change border on green to signal all good, and remove error message
-    firstName.style.border = "2px solid #279e7a";
-    errorFirst.innerText = "";
+    firstName.classList.remove("error-input");
+    firstName.classList.add("correct-input");
+    errorFirstName.innerText = "";
 
     // Stock the value of fist name in sessionStorage
     sessionStorage.setItem("firstName", firstName.value.trim());
@@ -88,8 +90,9 @@ function firstNameVerification(element, error) {
     element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push('Erreur dans le prénom');
-    firstName.style.border = "2px solid #FF4E60";
-    errorFirst.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
+    firstName.classList.remove("correct-input");
+    firstName.classList.add("error-input");
+    errorFirstName.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
 
   }
 
@@ -101,8 +104,9 @@ function lastNameVerification(element, error) {
   if (lastName.value.trim().length >= 2 && lastName.value.trim() != "") {
 
     // Change border on green to signal all good, and remove error message
-    lastName.style.border = "2px solid #279e7a";
-    errorLast.innerText = "";
+    lastName.classList.remove("error-input");
+    lastName.classList.add("correct-input");
+    errorLastName.innerText = "";
 
     // Stock the value of last name in sessionStorage
     sessionStorage.setItem("lastName", lastName.value.trim());
@@ -113,8 +117,9 @@ function lastNameVerification(element, error) {
     element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push('Erreur dans le nom');
-    lastName.style.border = "2px solid #FF4E60";
-    errorLast.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
+    lastName.classList.remove("correct-input");
+    lastName.classList.add("error-input");
+    errorLastName.innerText = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
 
   }
 }
@@ -125,7 +130,8 @@ function emailVerification(element, error) {
   if (email.value.match(regexEmail)) {
 
     // Change border on green to signal all good, and remove error message
-    email.style.border = "2px solid #279e7a";
+    email.classList.remove("error-input");
+    email.classList.add("correct-input");
     errorEmail.innerText = "";
 
     // Stock the value of email in sessionStorage
@@ -137,7 +143,8 @@ function emailVerification(element, error) {
     element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur dans l'email");
-    email.style.border = "2px solid #FF4E60";
+    email.classList.remove("correct-input");
+    email.classList.add("error-input");
     errorEmail.innerText = "Veuillez entrer une adresse email valide.";
 
   }
@@ -154,7 +161,8 @@ function birthDateChecked(element, error) {
   if (birthDate.value !== "" && birthDateMinimum >= 410240376000) {
 
     // Change border on green to signal all good, and remove error message
-    birthDate.style.border = "2px solid #279e7a";
+    birthDate.classList.remove("error-input");
+    birthDate.classList.add("correct-input");
     errorBirthdate.innerText = "";
 
     // Stock the value of birth date in sessionStorage
@@ -166,7 +174,8 @@ function birthDateChecked(element, error) {
     element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur de date de naissance");
-    birthDate.style.border = "2px solid #FF4E60";
+    birthDate.classList.remove("correct-input");
+    birthDate.classList.add("error-input");
     errorBirthdate.innerText = "Veuillez entrer une date de naissance valide.";
 
   }
@@ -178,7 +187,8 @@ function tournamentQuantityChecked(element, error) {
   if (tournamentQuantity.value != "" && tournamentQuantity.value >= 0) {
 
     // Change border on green to signal all good, and remove error message
-    tournamentQuantity.style.border = "2px solid #279e7a";
+    tournamentQuantity.classList.remove("error-input");
+    tournamentQuantity.classList.add("correct-input");
     errorQuantity.innerText = "";
 
     // Stock the value of quantity in sessionStorage
@@ -190,7 +200,8 @@ function tournamentQuantityChecked(element, error) {
     element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur nombre participation");
-    tournamentQuantity.style.border = "2px solid #FF4E60";
+    tournamentQuantity.classList.remove("correct-input");
+    tournamentQuantity.classList.add("error-input");
     errorQuantity.innerText = "Veuillez saisir un nombre valide";
 
   }
@@ -268,13 +279,7 @@ function submitConfirmation(element, errorList) {
     // Clear the sessionStorage
     sessionStorage.clear();
 
-  } else {
-
-    console.log("Il y a des erreurs dans le formulaire");
-
   }
-
-  console.log("Formulaire envoyé");
 
 }
 
@@ -306,12 +311,12 @@ btnMenu.addEventListener("click", editNav);
 
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+btnSignUp.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
 
-  modalbg.style.display = "block";
+  modalBg.style.display = "block";
 
 
   if (sessionStorage.getItem("firstName")) {
@@ -351,7 +356,7 @@ closeBtn.addEventListener("click", closeModal);
 
 function closeModal() {
 
-  modalbg.style.display = "none";
+  modalBg.style.display = "none";
 
   if (form.style.display == "none") {
 
