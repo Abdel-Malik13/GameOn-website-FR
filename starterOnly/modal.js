@@ -22,9 +22,8 @@ const tournamentQuantity = document.querySelector("#quantity");
 const tournamentCity = document.querySelectorAll("input[type='radio']");
 const termsOfUse = document.querySelector("#checkbox1");
 
-// Regex for form verifications (mail and first name & last name)
+// Regex for form verifications (mail)
 const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const regexName = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
 // Const to select div for message error
 const errorFirstName = document.getElementById("error-first");
@@ -41,40 +40,40 @@ const errorTerms = document.getElementById("error-terms");
 function formSubmit(e) {
 
   // An array contain errors messages
-  let numberOfError = [];
+  let errorsMessageForm = [];
 
   // Call function of verification for the First Name enter by user, "e" parameter is the "e" parameter of formSubit, is event object.
   // Same for all others functions
-  firstNameVerification(e, numberOfError);
+  firstNameVerification(errorsMessageForm);
 
   // Call function of verification for the Last Name enter by user
-  lastNameVerification(e, numberOfError);
+  lastNameVerification(errorsMessageForm);
 
   // Call function of verification for email
-  emailVerification(e, numberOfError);
+  emailVerification(errorsMessageForm);
 
   // Call function of verification for birth date
-  birthDateChecked(e, numberOfError);
+  birthDateChecked(errorsMessageForm);
 
   // Call function of verification for quantity of tournament participate
-  tournamentQuantityChecked(e, numberOfError);
+  tournamentQuantityChecked(errorsMessageForm);
 
   // Call function of verification if city is selected
-  cityTournamentChecked(e, numberOfError);
+  cityTournamentChecked(errorsMessageForm);
   
   // Call function of verification if terms are selected
-  termsCondition(e, numberOfError);
+  termsCondition(errorsMessageForm);
 
   // Call function of confirmation form submitted
-  submitConfirmation(e, numberOfError);
+  submitConfirmation(e, errorsMessageForm);
 
 }
 
 
 // Function of verification for First Name, parameters "element" is "e" for event and error is the array of errors
-function firstNameVerification(element, error) {
+function firstNameVerification(error) {
   // Verify if the longer of first name is > than 2 and not empty
-  if (firstName.value.trim().length >= 2 && firstName.value.trim() != "") {
+  if (firstName.value.trim().length >= 2) {
 
     // Change border on green to signal all good, and remove error message
     firstName.classList.remove("error-input");
@@ -86,8 +85,6 @@ function firstNameVerification(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push('Erreur dans le prénom');
     firstName.classList.remove("correct-input");
@@ -99,9 +96,9 @@ function firstNameVerification(element, error) {
 }
 
 // Function of verification for Last Name, parameters "element" is "e" for event and error is the array of errors
-function lastNameVerification(element, error) {
+function lastNameVerification(error) {
   // Verify if the longer of last name is > than 2 and not empty
-  if (lastName.value.trim().length >= 2 && lastName.value.trim() != "") {
+  if (lastName.value.trim().length >= 2) {
 
     // Change border on green to signal all good, and remove error message
     lastName.classList.remove("error-input");
@@ -113,8 +110,6 @@ function lastNameVerification(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push('Erreur dans le nom');
     lastName.classList.remove("correct-input");
@@ -125,7 +120,7 @@ function lastNameVerification(element, error) {
 }
 
 // Function of verification for email, parameters "element" is "e" for event and error is the array of errors
-function emailVerification(element, error) {
+function emailVerification(error) {
   // Verify if email match with the regex for an valide email
   if (email.value.match(regexEmail)) {
 
@@ -139,8 +134,6 @@ function emailVerification(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur dans l'email");
     email.classList.remove("correct-input");
@@ -151,7 +144,7 @@ function emailVerification(element, error) {
 }
 
 // Function of verification for bird date, parameters "element" is "e" for event and error is the array of errors
-function birthDateChecked(element, error) {
+function birthDateChecked(error) {
 
   // Create an variable with date now and another who calculates the date today - birth date for give age of user
   const dateToday = Date.now();
@@ -170,8 +163,6 @@ function birthDateChecked(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur de date de naissance");
     birthDate.classList.remove("correct-input");
@@ -182,7 +173,7 @@ function birthDateChecked(element, error) {
 }
 
 // Function of verification for quantity paricipate tournament
-function tournamentQuantityChecked(element, error) {
+function tournamentQuantityChecked(error) {
   // Verify if the value is not empty and superior or equal to 0
   if (tournamentQuantity.value != "" && tournamentQuantity.value >= 0) {
 
@@ -196,8 +187,6 @@ function tournamentQuantityChecked(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur nombre participation");
     tournamentQuantity.classList.remove("correct-input");
@@ -208,7 +197,7 @@ function tournamentQuantityChecked(element, error) {
 }
 
 // Function of verification for city paricipate tournament
-function cityTournamentChecked(element, error) {
+function cityTournamentChecked(error) {
   // Use for 
   for (let index = 0; index < tournamentCity.length; index++) {
     const cityTournament = tournamentCity[index];
@@ -226,8 +215,6 @@ function cityTournamentChecked(element, error) {
 
     } else {
 
-      // When error, stop form submit
-      element.preventDefault();
       // Push a error message in error array, add a red border and an error message
       error.push("Erreur dans la sélection de la ville");
       errorCity.innerText = "Veuillez sélectionner une ville.";
@@ -237,7 +224,7 @@ function cityTournamentChecked(element, error) {
 }
 
 // Function of verification for terms of conditions
-function termsCondition(element, error) {
+function termsCondition(error) {
   // Verify if terms are checked
   if (termsOfUse.checked) {
 
@@ -246,8 +233,6 @@ function termsCondition(element, error) {
 
   } else {
 
-    // When error, stop form submit
-    element.preventDefault();
     // Push a error message in error array, add a red border and an error message
     error.push("Erreur acceptation des conditions d'utilisation");
     errorTerms.innerText = "Veuillez accepter les conditions d'utilisation.";
@@ -256,7 +241,7 @@ function termsCondition(element, error) {
 }
 
 
-// Function of confirmation before form submit
+// Function of confirmation check errors before submit
 function submitConfirmation(element, errorList) {
 
   // Verify if the array of errors is equal to 0 (no error)
@@ -274,11 +259,12 @@ function submitConfirmation(element, errorList) {
     // Show btn who close the modal
     closeBtn.style.display = "block";
 
-    console.log("Il n'y a pas d'erreur dans le formulaire");
-
     // Clear the sessionStorage
     sessionStorage.clear();
 
+  } else {
+    // When error, stop form submit
+    element.preventDefault();
   }
 
 }
@@ -318,7 +304,7 @@ function launchModal() {
 
   modalBg.style.display = "block";
 
-
+  // Create a sessionStorage for form field, when sessionStorage exist, set field value to session value
   if (sessionStorage.getItem("firstName")) {
     firstName.value = sessionStorage.getItem("firstName");
   }
@@ -354,6 +340,7 @@ function launchModal() {
 closeModalBtn.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 
+// Closing modal function
 function closeModal() {
 
   modalBg.style.display = "none";
