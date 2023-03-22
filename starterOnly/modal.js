@@ -213,14 +213,13 @@ function cityTournamentChecked(error) {
       // Return the value of cityTournament
       return cityTournament.value;
 
-    } else {
-
-      // Push a error message in error array, add a red border and an error message
-      error.push("Erreur dans la sélection de la ville");
-      errorCity.innerText = "Veuillez sélectionner une ville.";
-
     }
   }
+
+  // Push a error message in error array, add a red border and an error message
+  error.push("Erreur dans la sélection de la ville");
+  errorCity.innerText = "Veuillez sélectionner une ville.";
+
 }
 
 // Function of verification for terms of conditions
@@ -244,11 +243,11 @@ function termsCondition(error) {
 // Function of confirmation check errors before submit
 function submitConfirmation(element, errorList) {
 
+  // Stop page reload
+  element.preventDefault();
+
   // Verify if the array of errors is equal to 0 (no error)
   if (errorList.length == 0) {
-    
-    // Stop page reload
-    element.preventDefault();
 
     // Hide the form
     form.style.display = "none";
@@ -262,38 +261,20 @@ function submitConfirmation(element, errorList) {
     // Clear the sessionStorage
     sessionStorage.clear();
 
-  } else {
-    // When error, stop form submit
-    element.preventDefault();
+    // Restore default form style
+    firstName.classList.remove("correct-input");
+    lastName.classList.remove("correct-input");
+    email.classList.remove("correct-input");
+    birthDate.classList.remove("correct-input");
+    tournamentQuantity.classList.remove("correct-input");
+
   }
 
 }
-
 
 // Form submit
 form.addEventListener("submit", formSubmit);
 
-
-
-// A refaire
-
-function editNav() {
-
-  let topNav = document.getElementById("myTopnav");
-
-  if (topNav.className === "topnav") {
-
-    topNav.className += " responsive";
-
-  } else {
-
-    topNav.className = "topnav";
-
-  }
-
-}
-
-btnMenu.addEventListener("click", editNav);
 
 
 // launch modal event
@@ -306,23 +287,37 @@ function launchModal() {
 
   // Create a sessionStorage for form field, when sessionStorage exist, set field value to session value
   if (sessionStorage.getItem("firstName")) {
+
     firstName.value = sessionStorage.getItem("firstName");
+
+  } else {
+
+    firstName.value = "";
+    
   }
 
   if (sessionStorage.getItem("lastName")) {
     lastName.value = sessionStorage.getItem("lastName");
+  } else {
+    lastName.value = "";
   }
 
   if (sessionStorage.getItem("email")) {
     email.value = sessionStorage.getItem("email");
+  } else {
+    email.value = "";
   }
 
   if (sessionStorage.getItem("birthDate")) {
     birthDate.value = sessionStorage.getItem("birthDate");
+  } else {
+    birthDate.value = "";
   }
 
   if (sessionStorage.getItem("tournamentQuantity")) {
     tournamentQuantity.value = sessionStorage.getItem("tournamentQuantity");
+  } else {
+    tournamentQuantity.value = "";
   }
 
   if (sessionStorage.getItem("tournamentCity")) {
@@ -332,6 +327,8 @@ function launchModal() {
 
     tournamentCityChecked.checked = true;
 
+  } else {
+    tournamentCity.forEach(city => city.checked = false);
   }
 
 }
@@ -363,3 +360,23 @@ function closeModal() {
   }
 
 }
+
+
+
+function editNav() {
+
+  let topNav = document.getElementById("myTopnav");
+
+  if (topNav.className === "topnav") {
+
+    topNav.className += " responsive";
+
+  } else {
+
+    topNav.className = "topnav";
+
+  }
+
+}
+
+btnMenu.addEventListener("click", editNav);
