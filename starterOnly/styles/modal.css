@@ -107,7 +107,7 @@ main {
 .button {
   margin-top: 0.5em;
   padding: 1em;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
   color: #fff;
@@ -314,8 +314,8 @@ input[data-error]::after {
 .btn-submit,
 .btn-signup {
   display: block;
-  margin: 0 auto;
-  padding: 12px 82px;
+  margin: 10px auto 0;
+  padding: 10px 50px;
   border: 0;
   border-radius: 7px;
   cursor: pointer;
@@ -439,7 +439,8 @@ input[data-error]::after {
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 28px;
-  padding: 12px 82px;
+  padding: 10px 60px;
+  border: none;
 }
 
 
