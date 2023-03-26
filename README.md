@@ -8,10 +8,10 @@
 
 Le projet se trouve dans le dossier **starterOnly**, à l'intérieur il y a les dossiers et fichier suivants :
 
-- DM_Sans qui contient l'ensemble des polices de caractère du projet
-- img qui contient l'ensemble des images du projet
-- js où se trouve le fichier JavaScript du projet
-- styles qui contient le fichier css
-- index.html page du site
+- DM_Sans - qui contient l'ensemble des polices de caractère du projet
+- img - qui contient l'ensemble des images du projet
+- js - où se trouve le fichier JavaScript du projet
+- styles - qui contient le fichier css
+- index.html - page du site
 
 Le site n'utilise aucun framework (ni css ni js), et utilise flexbox pour le html.
