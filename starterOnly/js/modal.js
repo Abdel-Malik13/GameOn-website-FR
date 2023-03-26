@@ -278,8 +278,6 @@ function submitConfirmation(element, errorList) {
 
 
 
-
-
 // launch modal event
 btnSignUp.forEach((btn) => btn.addEventListener("click", launchModal));
 
