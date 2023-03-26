@@ -6,7 +6,7 @@
 
 # Présentation du projet
 
-Le projet se trouve dans le dossier starterOnly, à l'intérieur il y a les dossiers et fichier suivant :
+Le projet se trouve dans le dossier *starterOnly*, à l'intérieur il y a les dossiers et fichier suivants :
 
 - DM_Sans qui contient l'ensemble des polices de caractère du projet
 - img qui contient l'ensemble des images du projet
