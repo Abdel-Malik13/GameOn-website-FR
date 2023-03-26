@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="styles/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet">
   </head>
   <body>
+    <!-- Main navigation and logo -->
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-        <img alt="logo" src="Logo.png">
+        <img alt="logo" src="img/Logo.png">
       </div>
       <div class="main-navbar">
         <a href="#" class="active"><span>Accueil</span></a>
@@ -25,6 +26,7 @@
       </div>
     </div>
     <main>
+      <!-- Main section with main title and description on left, and image on right -->
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
@@ -40,17 +42,20 @@
           </button>
         </div>
         <div class="hero-img">
-          <img src="./bg_img.jpg" alt="img">
+          <img src="img/bg_img.jpg" alt="img">
         </div>
         <button class="btn-signup">
           je m'inscris
         </button>
       </div>
 
+      <!-- Background of form registration -->
       <div class="bground">
         <div class="content">
+          <!-- Button for closing the modal -->
           <span class="close"></span>
           <div class="modal-body">
+            <!-- Form registration -->
             <form
               name="reserve"
               action="index.html"
@@ -170,6 +175,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
+                  name="checkbox1"
                   checked>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
@@ -189,7 +195,7 @@
                 type="submit"
                 value="C'est parti">
             </form>
-
+            <!-- Confirmation message after form submitting -->
             <p class="message-confirmation">Merci pour <br> votre inscription</p>
           </div>
             <input class="button btn-close" type="button" value="Fermer">
@@ -201,6 +207,6 @@
         Copyright 2014 - 2022, GameOn Inc.
       </p>
     </footer>
-    <script src="modal.js"></script>
+    <script src="js/modal.js"></script>
   </body>
 </html>

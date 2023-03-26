@@ -40,34 +40,38 @@ const errorTerms = document.getElementById("error-terms");
 function formSubmit(e) {
 
   // An array contain errors messages
-  let errorsMessageForm = [];
+  let errorsMessagesForm = [];
 
   // Call function of verification for the First Name enter by user, "e" parameter is the "e" parameter of formSubit, is event object.
   // Same for all others functions
-  firstNameVerification(errorsMessageForm);
+  firstNameVerification(errorsMessagesForm);
 
   // Call function of verification for the Last Name enter by user
-  lastNameVerification(errorsMessageForm);
+  lastNameVerification(errorsMessagesForm);
 
   // Call function of verification for email
-  emailVerification(errorsMessageForm);
+  emailVerification(errorsMessagesForm);
 
   // Call function of verification for birth date
-  birthDateChecked(errorsMessageForm);
+  birthDateChecked(errorsMessagesForm);
 
   // Call function of verification for quantity of tournament participate
-  tournamentQuantityChecked(errorsMessageForm);
+  tournamentQuantityChecked(errorsMessagesForm);
 
   // Call function of verification if city is selected
-  cityTournamentChecked(errorsMessageForm);
+  cityTournamentChecked(errorsMessagesForm);
   
   // Call function of verification if terms are selected
-  termsCondition(errorsMessageForm);
+  termsCondition(errorsMessagesForm);
 
   // Call function of confirmation form submitted
-  submitConfirmation(e, errorsMessageForm);
+  submitConfirmation(e, errorsMessagesForm);
 
 }
+
+// Form submit
+form.addEventListener("submit", formSubmit);
+
 
 
 // Function of verification for First Name, parameters "element" is "e" for event and error is the array of errors
@@ -175,7 +179,7 @@ function birthDateChecked(error) {
 // Function of verification for quantity paricipate tournament
 function tournamentQuantityChecked(error) {
   // Verify if the value is not empty and superior or equal to 0
-  if (tournamentQuantity.value != "" && tournamentQuantity.value >= 0) {
+  if (tournamentQuantity.value >= 0 && parseInt(tournamentQuantity.value) == tournamentQuantity.value) {
 
     // Change border on green to signal all good, and remove error message
     tournamentQuantity.classList.remove("error-input");
@@ -247,7 +251,7 @@ function submitConfirmation(element, errorList) {
   element.preventDefault();
 
   // Verify if the array of errors is equal to 0 (no error)
-  if (errorList.length == 0) {
+  if (errorList.length === 0) {
 
     // Hide the form
     form.style.display = "none";
@@ -272,8 +276,7 @@ function submitConfirmation(element, errorList) {
 
 }
 
-// Form submit
-form.addEventListener("submit", formSubmit);
+
 
 
 
@@ -284,43 +287,40 @@ btnSignUp.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
 
   modalBg.style.display = "block";
+  form.style.display = "block";
 
   // Create a sessionStorage for form field, when sessionStorage exist, set field value to session value
-  if (sessionStorage.getItem("firstName")) {
-
+  if (sessionStorage.getItem("firstName") !== null) {
     firstName.value = sessionStorage.getItem("firstName");
-
   } else {
-
     firstName.value = "";
-    
   }
 
-  if (sessionStorage.getItem("lastName")) {
+  if (sessionStorage.getItem("lastName") !== null) {
     lastName.value = sessionStorage.getItem("lastName");
   } else {
     lastName.value = "";
   }
 
-  if (sessionStorage.getItem("email")) {
+  if (sessionStorage.getItem("email") !== null) {
     email.value = sessionStorage.getItem("email");
   } else {
     email.value = "";
   }
 
-  if (sessionStorage.getItem("birthDate")) {
+  if (sessionStorage.getItem("birthDate") !== null) {
     birthDate.value = sessionStorage.getItem("birthDate");
   } else {
     birthDate.value = "";
   }
 
-  if (sessionStorage.getItem("tournamentQuantity")) {
+  if (sessionStorage.getItem("tournamentQuantity") !== null) {
     tournamentQuantity.value = sessionStorage.getItem("tournamentQuantity");
   } else {
     tournamentQuantity.value = "";
   }
 
-  if (sessionStorage.getItem("tournamentCity")) {
+  if (sessionStorage.getItem("tournamentCity") !== null) {
 
     const tournamentCityValue = sessionStorage.getItem('tournamentCity');
     const tournamentCityChecked = document.querySelector(`input[value="${tournamentCityValue}"]`);
@@ -341,28 +341,16 @@ closeBtn.addEventListener("click", closeModal);
 function closeModal() {
 
   modalBg.style.display = "none";
+  form.style.display = "none";
 
-  if (form.style.display == "none") {
-
-    form.style.display = "block";
-    
-    messageConfirmation.style.display = "none";
-    closeBtn.style.display = "none";
-
-  } else if (form.style.display == "") {
-
-    form.style.display = "";
-
-  } else {
-
-    form.style.display = "none";
-
-  }
+  messageConfirmation.style.display = "none";
+  closeBtn.style.display = "none";
 
 }
 
 
 
+// Function for responsive navigation
 function editNav() {
 
   let topNav = document.getElementById("myTopnav");

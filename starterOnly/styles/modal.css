@@ -6,10 +6,10 @@
 
 
 
-* {
-  box-sizing: border-box;
+*, ::before, ::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -120,6 +120,7 @@ main {
 
 
 
+/* Style of background form */
 .bground {
   display: none;
   width: 100%;
@@ -336,6 +337,7 @@ input[data-error]::after {
 
 
 
+/* Styles for Main section with main title and description on left, and image on right */
 .hero-section {
   display: grid;
   min-height: 93vh;
@@ -400,6 +402,7 @@ input[data-error]::after {
 
 
 
+/* Button of registration */
 .btn-signup {
   margin: 59px 0 0 0;
   padding: 15px 23px;
@@ -457,6 +460,7 @@ input[data-error]::after {
 
 
 
+/* Aanimations and responsive */
 @keyframes modalopen {
   from {
     opacity: 0;
