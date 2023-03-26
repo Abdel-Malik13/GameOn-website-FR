@@ -296,8 +296,8 @@ input[data-error]::after {
 }
 
 .checkbox2-label .checkbox-icon::after {
-  width: 7px;
-  height: 4px;
+  width: 12px;
+  height: 7px;
   border-radius: 2px;
   background: transparent;
   border: 2px solid transparent;
