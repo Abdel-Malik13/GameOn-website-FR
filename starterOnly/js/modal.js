@@ -77,7 +77,7 @@ form.addEventListener("submit", formSubmit);
 // Function of verification for First Name, parameters "element" is "e" for event and error is the array of errors
 function firstNameVerification(error) {
   // Verify if the longer of first name is > than 2 and not empty
-  if (firstName.value.trim().length >= 2) {
+  if (firstName.value.trim().length >= 2 && isNaN(firstName.value.trim())) {
 
     // Change border on green to signal all good, and remove error message
     firstName.classList.remove("error-input");
@@ -102,7 +102,7 @@ function firstNameVerification(error) {
 // Function of verification for Last Name, parameters "element" is "e" for event and error is the array of errors
 function lastNameVerification(error) {
   // Verify if the longer of last name is > than 2 and not empty
-  if (lastName.value.trim().length >= 2) {
+  if (lastName.value.trim().length >= 2 && isNaN(lastName.value.trim())) {
 
     // Change border on green to signal all good, and remove error message
     lastName.classList.remove("error-input");
